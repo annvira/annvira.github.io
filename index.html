@@ -15,9 +15,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script>document.documentElement.classList.add('js');</script>
 </head>
 
 <body>
+
+    <!-- ===================== FIRST-LOAD INTRO (3D data-viz) ===================== -->
+    <div class="intro" id="intro" aria-hidden="true">
+        <div class="intro-inner">
+            <div class="intro-brand">
+                <span class="brand-mark">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18" /><path d="M7 14l3-4 3 2 4-7" /></svg>
+                </span>
+                <b>Anvira</b>
+            </div>
+            <div class="intro-stage">
+                <div class="intro-chart">
+                    <i style="--h:36%"></i><i style="--h:60%"></i><i style="--h:46%"></i>
+                    <i style="--h:82%"></i><i style="--h:64%"></i><i style="--h:96%"></i><i style="--h:74%"></i>
+                </div>
+            </div>
+            <p class="intro-label">Turning data into clarity</p>
+        </div>
+    </div>
 
     <!-- ===================== NAV ===================== -->
     <nav class="nav" id="nav">
@@ -70,7 +90,7 @@
                 </div>
             </div>
 
-            <div class="hero-visual reveal">
+            <div class="hero-visual">
                 <div class="dash">
                     <div class="dash-top">
                         <div class="dots"><i></i><i></i><i></i></div>

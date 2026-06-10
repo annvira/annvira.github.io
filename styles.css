@@ -523,3 +523,59 @@ ul { list-style: none; }
     .dash { transform: none; }
     .hero-visual:hover .dash { transform: none; }
 }
+
+/* ============================================================
+   FIRST-LOAD INTRO — 3D data-visualization reveal
+   ============================================================ */
+.js body:not(.loaded) { overflow: hidden; }
+html:not(.js) .intro { display: none; }
+
+.intro {
+    position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center;
+    background: radial-gradient(120% 120% at 50% 0%, #16204a 0%, #0b1224 48%, #06090f 100%);
+    transition: transform 1s cubic-bezier(.76, 0, .24, 1), opacity .5s ease .5s;
+}
+.intro--done { transform: translateY(-101%); opacity: 0; pointer-events: none; }
+.intro-inner { text-align: center; }
+.intro-brand { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 36px; opacity: 0; animation: introUp .6s ease .1s forwards; }
+.intro-brand .brand-mark { width: 42px; height: 42px; border-radius: 11px; background: linear-gradient(135deg, var(--indigo), var(--indigo-l)); display: grid; place-items: center; box-shadow: var(--shadow-glow); }
+.intro-brand .brand-mark svg { width: 23px; height: 23px; }
+.intro-brand b { font-family: var(--display); font-weight: 700; font-size: 1.7rem; color: #fff; letter-spacing: -.02em; }
+.intro-stage { perspective: 760px; }
+.intro-chart { display: inline-flex; align-items: flex-end; gap: 11px; height: 132px; padding: 0 6px; transform: rotateX(26deg) rotateY(-14deg); transform-style: preserve-3d; }
+.intro-chart i {
+    display: block; width: 22px; height: 0; border-radius: 5px 5px 0 0;
+    background: linear-gradient(180deg, #818cf8, #34d399);
+    box-shadow: 0 12px 24px rgba(79, 70, 229, .45);
+    animation: introBar .8s cubic-bezier(.2, .85, .25, 1) forwards;
+}
+.intro-chart i:nth-child(1) { animation-delay: .20s; }
+.intro-chart i:nth-child(2) { animation-delay: .30s; }
+.intro-chart i:nth-child(3) { animation-delay: .40s; }
+.intro-chart i:nth-child(4) { animation-delay: .50s; }
+.intro-chart i:nth-child(5) { animation-delay: .60s; }
+.intro-chart i:nth-child(6) { animation-delay: .70s; }
+.intro-chart i:nth-child(7) { animation-delay: .80s; }
+@keyframes introBar { to { height: var(--h); } }
+.intro-label { margin-top: 32px; font-size: .78rem; letter-spacing: .22em; text-transform: uppercase; color: #9aa6c6; opacity: 0; animation: introUp .6s ease 1.05s forwards; }
+@keyframes introUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+/* Hero choreographed entrance after the intro lifts away (transition-based) */
+.hero-text > * { transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.hero-visual { transition: opacity 1s var(--ease) .25s, transform 1s var(--ease) .25s; }
+.js body:not(.loaded) .hero-text > * { opacity: 0; transform: translateY(24px); }
+.js body:not(.loaded) .hero-visual { opacity: 0; transform: translateY(34px) scale(.95); }
+body.loaded .hero-text > * { opacity: 1; transform: none; }
+body.loaded .hero-visual { opacity: 1; transform: none; }
+body.loaded .hero-text > *:nth-child(1) { transition-delay: .05s; }
+body.loaded .hero-text > *:nth-child(2) { transition-delay: .14s; }
+body.loaded .hero-text > *:nth-child(3) { transition-delay: .23s; }
+body.loaded .hero-text > *:nth-child(4) { transition-delay: .32s; }
+body.loaded .hero-text > *:nth-child(5) { transition-delay: .41s; }
+
+@media (max-width: 540px) { .intro-chart i { width: 16px; } .intro-chart { gap: 8px; height: 108px; } }
+@media (prefers-reduced-motion: reduce) {
+    .intro { display: none !important; }
+    .js body:not(.loaded) .hero-text > *,
+    .js body:not(.loaded) .hero-visual { opacity: 1 !important; transform: none !important; }
+}

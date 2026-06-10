@@ -4,6 +4,23 @@
 (function () {
     'use strict';
 
+    // First-load intro (3D data-viz reveal) -> dismiss and choreograph hero in
+    (function () {
+        var intro = document.getElementById('intro');
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var done = false;
+        function finish() {
+            if (done) return; done = true;
+            document.body.classList.add('loaded');
+            if (intro) {
+                intro.classList.add('intro--done');
+                setTimeout(function () { if (intro && intro.parentNode) intro.parentNode.removeChild(intro); }, 1100);
+            }
+        }
+        if (reduce || !intro) { finish(); }
+        else { setTimeout(finish, 1900); }
+    })();
+
     // Year
     var y = document.getElementById('year');
     if (y) y.textContent = new Date().getFullYear();
