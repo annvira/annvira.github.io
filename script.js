@@ -78,6 +78,47 @@
         }
         requestAnimationFrame(step);
     }
+    // Contact form -> Web3Forms (AJAX, inline status)
+    var form = document.getElementById('contact-form');
+    var status = document.getElementById('form-status');
+    if (form && status) {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var key = (form.querySelector('[name="access_key"]') || {}).value || '';
+            if (key.indexOf('YOUR_ACCESS_KEY') !== -1 || !key) {
+                showStatus('error', "Form isn't connected yet — add your Web3Forms access key. Meanwhile, email anneushka017@gmail.com.");
+                return;
+            }
+            var btn = form.querySelector('button[type="submit"]');
+            var label = btn ? btn.innerHTML : '';
+            if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+            showStatus('pending', 'Sending your details…');
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: { 'Accept': 'application/json' },
+                body: new FormData(form)
+            }).then(function (r) { return r.json(); }).then(function (data) {
+                if (data.success) {
+                    form.reset();
+                    showStatus('ok', '✓ Thanks! Your details are on the way — we\'ll reply within one business day.');
+                } else {
+                    showStatus('error', (data.message || 'Something went wrong.') + ' You can also email anneushka017@gmail.com.');
+                }
+            }).catch(function () {
+                showStatus('error', 'Network error — please email anneushka017@gmail.com instead.');
+            }).finally(function () {
+                if (btn) { btn.disabled = false; btn.innerHTML = label; }
+            });
+        });
+    }
+    function showStatus(type, msg) {
+        if (!status) return;
+        status.hidden = false;
+        status.textContent = msg;
+        status.className = 'form-status ' + type;
+    }
+
     var counters = document.querySelectorAll('[data-count]');
     if ('IntersectionObserver' in window) {
         var co = new IntersectionObserver(function (entries) {

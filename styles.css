@@ -377,6 +377,10 @@ ul { list-style: none; }
 .field textarea { resize: vertical; min-height: 110px; }
 .form .btn { width: 100%; }
 .form-note { font-size: .8rem; color: var(--text-3); margin-top: 12px; text-align: center; }
+.form-status { margin-top: 14px; padding: 12px 14px; border-radius: var(--r-md); font-size: .88rem; font-weight: 600; text-align: center; }
+.form-status.pending { background: var(--indigo-soft); color: var(--indigo); }
+.form-status.ok { background: rgba(16, 185, 129, .12); color: var(--emerald-d); }
+.form-status.error { background: rgba(239, 68, 68, .1); color: #dc2626; }
 
 /* ============================================================
    FOOTER

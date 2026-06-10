@@ -363,8 +363,20 @@
                 </div>
             </div>
 
-            <!-- Form posts to Formspree. Replace YOUR_FORM_ID with your Formspree endpoint (formspree.io). -->
-            <form class="form reveal" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <!-- ============================================================
+                 CONTACT FORM — submissions are emailed to you via Web3Forms.
+                 SETUP (1 minute, required for emails to arrive):
+                   1. Go to https://web3forms.com  →  enter the email you want
+                      submissions delivered to  →  copy the Access Key it emails you.
+                   2. Paste that key below, replacing YOUR_ACCESS_KEY_HERE.
+                 That's it — no account or dashboard needed.
+            ============================================================ -->
+            <form class="form reveal" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                <input type="hidden" name="subject" value="New project enquiry from the Anvira website">
+                <input type="hidden" name="from_name" value="Anvira Website">
+                <!-- Honeypot spam trap (leave empty) -->
+                <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
                 <div class="field">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" placeholder="Your name" required>
@@ -392,6 +404,7 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                 </button>
                 <p class="form-note">We only use your details to reply. No spam, ever.</p>
+                <p class="form-status" id="form-status" role="status" aria-live="polite" hidden></p>
             </form>
         </div>
     </section>
