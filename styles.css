@@ -488,3 +488,38 @@ ul { list-style: none; }
 
 @media (max-width: 980px) { .audience { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 540px) { .audience { grid-template-columns: 1fr; } .svc-extra { flex-direction: column; align-items: flex-start; } }
+
+/* ============================================================
+   3D DEPTH — cursor tilt + floating layers
+   ============================================================ */
+.pillar, .svc, .why-card, .aud {
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+/* inner layers lift off the card surface on hover (z-depth) */
+.pillar-ico, .svc-ico, .aud-ico, .why-num,
+.pillar h3, .svc h3, .why-card h3, .aud h3 {
+    transition: transform .3s var(--ease);
+    transform: translateZ(0);
+}
+.pillar:hover .pillar-ico, .aud:hover .aud-ico, .why-card:hover .why-num { transform: translateZ(34px); }
+.svc:hover .svc-ico { transform: translateZ(34px) scale(1.06) rotate(-4deg); }
+.pillar:hover h3, .why-card:hover h3, .aud:hover h3 { transform: translateZ(18px); }
+.svc:hover h3 { transform: translateZ(18px); }
+
+/* Hero dashboard — floating 3D panel */
+.hero-visual { perspective: 1200px; }
+.dash {
+    transform: rotateY(-9deg) rotateX(5deg);
+    transform-style: preserve-3d;
+    transition: transform .5s var(--ease);
+    will-change: transform;
+}
+.hero-visual:hover .dash { transform: rotateY(-3deg) rotateX(2deg); }
+.dash-kpis, .dash-chart { transform: translateZ(28px); }
+.float-pill { z-index: 3; }
+
+@media (max-width: 980px) {
+    .dash { transform: none; }
+    .hero-visual:hover .dash { transform: none; }
+}

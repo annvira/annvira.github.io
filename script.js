@@ -119,6 +119,21 @@
         status.className = 'form-status ' + type;
     }
 
+    // 3D cursor tilt on cards (skip on touch / reduced-motion)
+    var canHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (canHover && !reduceMotion) {
+        document.querySelectorAll('.pillar, .svc, .why-card, .aud').forEach(function (card) {
+            card.addEventListener('mousemove', function (e) {
+                var r = card.getBoundingClientRect();
+                var px = (e.clientX - r.left) / r.width - 0.5;
+                var py = (e.clientY - r.top) / r.height - 0.5;
+                card.style.transform = 'perspective(800px) rotateX(' + (-py * 5).toFixed(2) + 'deg) rotateY(' + (px * 5).toFixed(2) + 'deg) translateY(-4px)';
+            });
+            card.addEventListener('mouseleave', function () { card.style.transform = ''; });
+        });
+    }
+
     var counters = document.querySelectorAll('[data-count]');
     if ('IntersectionObserver' in window) {
         var co = new IntersectionObserver(function (entries) {
