@@ -5,6 +5,13 @@ WEBSITE-COPY.md
 # Local tooling
 .claude/
 
+# Reference capture (not for the repo)
+*.mp4
+*.mov
+*.webm
+frames/
+_extract_frames.py
+
 # OS / editor noise
 .DS_Store
 Thumbs.db

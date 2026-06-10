@@ -91,32 +91,67 @@
             </div>
 
             <div class="hero-visual">
-                <div class="dash">
-                    <div class="dash-top">
-                        <div class="dots"><i></i><i></i><i></i></div>
-                        <span class="tag">Live dashboard</span>
-                    </div>
-                    <div class="dash-kpis">
-                        <div class="kpi"><div class="l">Revenue</div><div class="v">$248K</div><div class="d up">▲ 24%</div></div>
-                        <div class="kpi"><div class="l">Orders</div><div class="v">3,914</div><div class="d up">▲ 12%</div></div>
-                        <div class="kpi"><div class="l">Churn</div><div class="v">2.1%</div><div class="d dn">▼ 0.6%</div></div>
-                    </div>
-                    <div class="dash-chart">
-                        <div class="ct"><span>Performance by month</span><span>+18% YoY</span></div>
-                        <div class="bars">
-                            <span style="height:42%"></span><span style="height:58%"></span><span style="height:48%"></span>
-                            <span style="height:70%"></span><span style="height:62%"></span><span style="height:84%"></span>
-                            <span style="height:74%"></span><span style="height:96%"></span>
+                <div class="lc" id="lifecycle" role="img"
+                    aria-label="Animation showing the Anvira workflow: raw data is cleaned and analysed, a dashboard is built, visuals appear, it is presented to a client in an online meeting, and the client approves.">
+                    <div class="lc-stage">
+                        <!-- 0 — RAW DATA -->
+                        <div class="lc-phase lc-raw" data-phase="0">
+                            <div class="lc-rawgrid" id="lc-raw"></div>
+                        </div>
+                        <!-- 1 — ANALYSIS -->
+                        <div class="lc-phase lc-analyze" data-phase="1">
+                            <div class="lc-cols"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                            <div class="lc-scanline"></div>
+                            <div class="lc-lens">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7" /><path d="M21 21l-4.5-4.5" /></svg>
+                            </div>
+                        </div>
+                        <!-- 2 — BUILD DASHBOARD -->
+                        <div class="lc-phase lc-build" data-phase="2">
+                            <div class="lc-card lc-card--wire">
+                                <span class="lc-sk lc-sk-1"></span><span class="lc-sk lc-sk-2"></span>
+                                <span class="lc-sk lc-sk-3"></span><span class="lc-sk lc-sk-4"></span>
+                            </div>
+                        </div>
+                        <!-- 3 — VISUALS -->
+                        <div class="lc-phase lc-visuals" data-phase="3">
+                            <div class="lc-card lc-card--full">
+                                <div class="lc-kpis">
+                                    <span><b>$248K</b>Revenue</span><span><b>+24%</b>Growth</span><span><b>3.9K</b>Orders</span>
+                                </div>
+                                <div class="lc-vrow">
+                                    <div class="lc-bars"><i style="--h:38%"></i><i style="--h:64%"></i><i style="--h:50%"></i><i style="--h:82%"></i><i style="--h:70%"></i><i style="--h:96%"></i></div>
+                                    <div class="lc-donut"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 4 — PRESENT TO CLIENT -->
+                        <div class="lc-phase lc-present" data-phase="4">
+                            <div class="lc-laptop">
+                                <div class="lc-laptop-screen">
+                                    <span class="lc-mini-bars"><i></i><i></i><i></i><i></i></span>
+                                    <span class="lc-mini-spark"></span>
+                                </div>
+                                <div class="lc-laptop-base"></div>
+                            </div>
+                            <span class="lc-live"><i></i> LIVE</span>
+                            <div class="lc-people"><span>AB</span><span>JD</span><span>MK</span></div>
+                        </div>
+                        <!-- 5 — APPROVED -->
+                        <div class="lc-phase lc-approve" data-phase="5">
+                            <div class="lc-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+                            </div>
+                            <div class="lc-stars">★★★★★</div>
+                            <div class="lc-bubble">Great work! 🎉</div>
+                            <div class="lc-confetti" id="lc-confetti"></div>
                         </div>
                     </div>
-                </div>
-                <div class="float-pill fp1">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5" /></svg>
-                    Reporting automated
-                </div>
-                <div class="float-pill fp2">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 3v18h18" /><path d="M7 14l3-4 3 2 4-7" /></svg>
-                    KPIs on track
+                    <div class="lc-hud">
+                        <span class="lc-num" id="lc-num">01</span>
+                        <span class="lc-label" id="lc-label">Raw, scattered data</span>
+                        <div class="lc-dots" id="lc-dots"></div>
+                    </div>
                 </div>
             </div>
         </div>
