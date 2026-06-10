@@ -1996,3 +1996,436 @@ html, body, .navbar, .section, .section-alt,
 
 /* Ensure section content sits above the ::before/::after layers */
 .section > .container { position: relative; z-index: 1; }
+
+/* ========================================
+   SECTION BACKGROUNDS v2 — bolder, layered
+   (overrides earlier rules)
+   ======================================== */
+.section::before {
+    background:
+        radial-gradient(ellipse 70% 55% at 8% -10%, rgba(79, 70, 229, .14), transparent 60%),
+        radial-gradient(ellipse 60% 50% at 100% 110%, rgba(16, 185, 129, .12), transparent 60%),
+        radial-gradient(circle 280px at 80% 20%, rgba(99, 102, 241, .08), transparent 60%);
+}
+.section::after {
+    background-image: radial-gradient(circle, rgba(99, 102, 241, .22) 1.2px, transparent 1.4px);
+    background-size: 26px 26px;
+    mask-image: radial-gradient(ellipse at center, black 35%, transparent 90%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 35%, transparent 90%);
+    opacity: .9;
+}
+
+.section-alt::before {
+    background:
+        radial-gradient(ellipse 75% 55% at 95% -10%, rgba(79, 70, 229, .15), transparent 60%),
+        radial-gradient(ellipse 70% 55% at 5% 110%, rgba(16, 185, 129, .12), transparent 60%),
+        linear-gradient(135deg, transparent 40%, rgba(79, 70, 229, .04) 70%, transparent 100%);
+}
+.section-alt::after {
+    background-image:
+        linear-gradient(90deg, rgba(99, 102, 241, .12) 1px, transparent 1px),
+        linear-gradient(rgba(99, 102, 241, .12) 1px, transparent 1px);
+    background-size: 56px 56px, 56px 56px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 85%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 85%);
+    opacity: 1;
+}
+
+/* Distinctive per-section gradient combos (stronger) */
+#about::before {
+    background:
+        radial-gradient(circle 420px at 95% 40%, rgba(79, 70, 229, .14), transparent 65%),
+        radial-gradient(circle 360px at 5% 0%, rgba(16, 185, 129, .11), transparent 60%),
+        linear-gradient(180deg, rgba(79, 70, 229, .03), transparent 40%);
+}
+#experience::before {
+    background:
+        radial-gradient(circle 460px at 0% 25%, rgba(79, 70, 229, .17), transparent 65%),
+        radial-gradient(circle 380px at 100% 75%, rgba(16, 185, 129, .13), transparent 60%),
+        linear-gradient(135deg, transparent 45%, rgba(99, 102, 241, .05) 75%, transparent 100%);
+}
+#projects::before {
+    background:
+        radial-gradient(ellipse 90% 50% at 50% -5%, rgba(79, 70, 229, .14), transparent 60%),
+        radial-gradient(ellipse 70% 50% at 50% 105%, rgba(16, 185, 129, .12), transparent 60%),
+        radial-gradient(circle 220px at 12% 60%, rgba(245, 158, 11, .07), transparent 60%);
+}
+#education::before {
+    background:
+        radial-gradient(circle 380px at 90% 15%, rgba(79, 70, 229, .15), transparent 65%),
+        radial-gradient(circle 340px at 5% 95%, rgba(16, 185, 129, .14), transparent 60%),
+        linear-gradient(135deg, transparent 50%, rgba(79, 70, 229, .04) 100%);
+}
+#certificates::before {
+    background:
+        radial-gradient(circle 360px at 15% 25%, rgba(79, 70, 229, .14), transparent 60%),
+        radial-gradient(circle 320px at 88% 75%, rgba(16, 185, 129, .12), transparent 60%),
+        radial-gradient(circle 200px at 60% 50%, rgba(245, 158, 11, .05), transparent 60%);
+}
+#contact::before {
+    background:
+        radial-gradient(ellipse 85% 60% at 50% -10%, rgba(79, 70, 229, .18), transparent 60%),
+        radial-gradient(circle 320px at 50% 105%, rgba(16, 185, 129, .14), transparent 65%),
+        linear-gradient(180deg, transparent 60%, rgba(79, 70, 229, .04));
+}
+
+/* Decorative SVG strokes via background image on selected sections */
+.section.deco-lines::before,
+#about.deco-lines::before {}
+
+/* Add an extra "data line" decorative stroke layer to a few sections */
+#about, #projects, #certificates, #contact {
+    overflow: hidden;
+}
+#about > .container,
+#projects > .container,
+#certificates > .container,
+#contact > .container { z-index: 2; }
+
+#about, #experience, #projects, #education, #certificates, #contact {
+    position: relative;
+}
+
+/* Floating accent shapes — small decorative blobs */
+.section .deco-shape {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* DARK MODE — punchier accents */
+[data-theme="dark"] .section::before {
+    background:
+        radial-gradient(ellipse 70% 55% at 8% -10%, rgba(129, 140, 248, .22), transparent 60%),
+        radial-gradient(ellipse 60% 50% at 100% 110%, rgba(52, 211, 153, .18), transparent 60%),
+        radial-gradient(circle 280px at 80% 20%, rgba(129, 140, 248, .14), transparent 60%);
+}
+[data-theme="dark"] .section::after {
+    background-image: radial-gradient(circle, rgba(129, 140, 248, .16) 1.2px, transparent 1.4px);
+    opacity: .8;
+}
+[data-theme="dark"] .section-alt::before {
+    background:
+        radial-gradient(ellipse 75% 55% at 95% -10%, rgba(129, 140, 248, .25), transparent 60%),
+        radial-gradient(ellipse 70% 55% at 5% 110%, rgba(52, 211, 153, .18), transparent 60%),
+        linear-gradient(135deg, transparent 40%, rgba(129, 140, 248, .08) 70%, transparent 100%);
+}
+[data-theme="dark"] .section-alt::after {
+    background-image:
+        linear-gradient(90deg, rgba(129, 140, 248, .1) 1px, transparent 1px),
+        linear-gradient(rgba(129, 140, 248, .1) 1px, transparent 1px);
+}
+[data-theme="dark"] #about::before {
+    background:
+        radial-gradient(circle 420px at 95% 40%, rgba(129, 140, 248, .22), transparent 65%),
+        radial-gradient(circle 360px at 5% 0%, rgba(52, 211, 153, .17), transparent 60%);
+}
+[data-theme="dark"] #experience::before {
+    background:
+        radial-gradient(circle 460px at 0% 25%, rgba(129, 140, 248, .25), transparent 65%),
+        radial-gradient(circle 380px at 100% 75%, rgba(52, 211, 153, .2), transparent 60%);
+}
+[data-theme="dark"] #projects::before {
+    background:
+        radial-gradient(ellipse 90% 50% at 50% -5%, rgba(129, 140, 248, .22), transparent 60%),
+        radial-gradient(ellipse 70% 50% at 50% 105%, rgba(52, 211, 153, .18), transparent 60%);
+}
+[data-theme="dark"] #education::before {
+    background:
+        radial-gradient(circle 380px at 90% 15%, rgba(129, 140, 248, .23), transparent 65%),
+        radial-gradient(circle 340px at 5% 95%, rgba(52, 211, 153, .2), transparent 60%);
+}
+[data-theme="dark"] #certificates::before {
+    background:
+        radial-gradient(circle 360px at 15% 25%, rgba(129, 140, 248, .22), transparent 60%),
+        radial-gradient(circle 320px at 88% 75%, rgba(52, 211, 153, .18), transparent 60%);
+}
+[data-theme="dark"] #contact::before {
+    background:
+        radial-gradient(ellipse 85% 60% at 50% -10%, rgba(129, 140, 248, .28), transparent 60%),
+        radial-gradient(circle 320px at 50% 105%, rgba(52, 211, 153, .2), transparent 65%);
+}
+
+/* ========================================
+   SECTION DECOR — visible accent shapes
+   ======================================== */
+.section-deco {
+    position: absolute;
+    pointer-events: none;
+    color: var(--indigo);
+    opacity: .18;
+    z-index: 0;
+}
+.section-deco-tr {
+    top: 40px;
+    right: -40px;
+    width: 260px;
+    height: 260px;
+    animation: spinSlow 80s linear infinite;
+}
+.section-deco-bl {
+    bottom: 50px;
+    left: -10px;
+    width: 220px;
+    height: 150px;
+    color: var(--emerald);
+    opacity: .25;
+}
+[data-theme="dark"] .section-deco { opacity: .22; }
+
+/* Background SVG decorations for the other sections (via pseudo) */
+#experience { isolation: isolate; }
+#experience::before {
+    background:
+        radial-gradient(circle 460px at 0% 25%, rgba(79, 70, 229, .17), transparent 65%),
+        radial-gradient(circle 380px at 100% 75%, rgba(16, 185, 129, .13), transparent 60%),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='180' viewBox='0 0 260 180'><g fill='none' stroke='%234f46e5' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' opacity='0.35'><polyline points='10,160 40,140 70,150 100,110 130,120 160,80 190,90 220,50 250,60'/><circle cx='100' cy='110' r='3' fill='%234f46e5'/><circle cx='160' cy='80' r='3' fill='%234f46e5'/><circle cx='220' cy='50' r='3' fill='%234f46e5'/></g></svg>") no-repeat right 40px top 60px / 260px;
+}
+
+#projects::before {
+    background:
+        radial-gradient(ellipse 90% 50% at 50% -5%, rgba(79, 70, 229, .14), transparent 60%),
+        radial-gradient(ellipse 70% 50% at 50% 105%, rgba(16, 185, 129, .12), transparent 60%),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'><g fill='%234f46e5' opacity='0.18'><rect x='10' y='110' width='18' height='60' rx='3'/><rect x='36' y='80' width='18' height='90' rx='3'/><rect x='62' y='50' width='18' height='120' rx='3'/><rect x='88' y='90' width='18' height='80' rx='3'/><rect x='114' y='30' width='18' height='140' rx='3'/><rect x='140' y='70' width='18' height='100' rx='3'/></g></svg>") no-repeat left 30px top 80px / 180px;
+}
+
+#education::before {
+    background:
+        radial-gradient(circle 380px at 90% 15%, rgba(79, 70, 229, .15), transparent 65%),
+        radial-gradient(circle 340px at 5% 95%, rgba(16, 185, 129, .14), transparent 60%),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'><g fill='none' stroke='%2310b981' stroke-width='1.2' opacity='0.35'><circle cx='110' cy='110' r='100' stroke-dasharray='4 6'/><circle cx='110' cy='110' r='70' stroke-dasharray='2 5'/><circle cx='110' cy='110' r='40'/><circle cx='110' cy='110' r='15' fill='%2310b981' opacity='0.4'/></g></svg>") no-repeat right -50px top 60px / 220px;
+}
+
+#certificates::before {
+    background:
+        radial-gradient(circle 360px at 15% 25%, rgba(79, 70, 229, .14), transparent 60%),
+        radial-gradient(circle 320px at 88% 75%, rgba(16, 185, 129, .12), transparent 60%),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='160' viewBox='0 0 200 160'><g fill='none' stroke='%234f46e5' stroke-width='1.4' opacity='0.3'><path d='M10,140 Q60,40 100,90 T190,30' stroke-linecap='round'/><path d='M10,150 Q70,100 110,120 T190,70' stroke-linecap='round' stroke-dasharray='3 5'/></g></svg>") no-repeat right 30px top 50px / 240px;
+}
+
+#contact::before {
+    background:
+        radial-gradient(ellipse 85% 60% at 50% -10%, rgba(79, 70, 229, .18), transparent 60%),
+        radial-gradient(circle 320px at 50% 105%, rgba(16, 185, 129, .14), transparent 65%),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='150' viewBox='0 0 300 150'><g fill='none' stroke='%2310b981' stroke-width='1.4' opacity='0.3'><polyline points='10,120 50,100 90,110 130,70 170,80 210,50 250,60 290,30' stroke-linecap='round' stroke-linejoin='round'/><circle cx='130' cy='70' r='3' fill='%2310b981'/><circle cx='210' cy='50' r='3' fill='%2310b981'/><circle cx='290' cy='30' r='3' fill='%2310b981'/></g></svg>") no-repeat right 40px top 30px / 300px;
+}
+
+/* Floating decorative blobs in each section corner via ::after (extra layer) */
+#about::after,
+#experience::after,
+#projects::after,
+#education::after,
+#certificates::after,
+#contact::after {
+    z-index: 0;
+}
+
+/* Make sure all content sits above decor */
+.section > .container { position: relative; z-index: 3; }
+.section > .section-deco { z-index: 1; }
+
+
+/* ========================================
+   LIGHT THEME — Stronger visual identity
+   ======================================== */
+
+/* Distinct surfaces per section (no more flat white) */
+.section:not(.section-alt) {
+    background: linear-gradient(180deg, #fbfaff 0%, #ffffff 50%, #fafaff 100%);
+}
+.section-alt {
+    background: linear-gradient(180deg, #eef1f8 0%, #f4f6fb 50%, #e9ecf5 100%);
+}
+
+/* Accent strip at the top of every section */
+.section > .section-strip {
+    display: none;
+}
+.section::before {
+    /* keep gradient blobs but layer with a top strip */
+    background:
+        linear-gradient(90deg, transparent, var(--indigo), var(--emerald), transparent) top center / 60% 3px no-repeat,
+        radial-gradient(ellipse 70% 55% at 8% -10%, rgba(79, 70, 229, .18), transparent 60%),
+        radial-gradient(ellipse 60% 50% at 100% 110%, rgba(16, 185, 129, .15), transparent 60%),
+        radial-gradient(circle 320px at 80% 20%, rgba(99, 102, 241, .12), transparent 60%);
+}
+.section-alt::before {
+    background:
+        linear-gradient(90deg, transparent, var(--emerald), var(--indigo), transparent) top center / 60% 3px no-repeat,
+        radial-gradient(ellipse 75% 55% at 95% -10%, rgba(79, 70, 229, .2), transparent 60%),
+        radial-gradient(ellipse 70% 55% at 5% 110%, rgba(16, 185, 129, .16), transparent 60%),
+        linear-gradient(135deg, transparent 35%, rgba(79, 70, 229, .06) 65%, transparent 100%);
+}
+
+/* More visible dot grid */
+.section::after {
+    background-image: radial-gradient(circle, rgba(79, 70, 229, .28) 1.3px, transparent 1.6px);
+    background-size: 24px 24px;
+    opacity: .9;
+}
+.section-alt::after {
+    background-image:
+        linear-gradient(90deg, rgba(79, 70, 229, .12) 1px, transparent 1px),
+        linear-gradient(rgba(79, 70, 229, .12) 1px, transparent 1px);
+    background-size: 52px 52px, 52px 52px;
+    opacity: 1;
+}
+
+/* SECTION NUMBER BADGE — adds professional rhythm */
+.section-label {
+    position: relative;
+    padding: 6px 16px;
+    background: white;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, .12);
+    border-radius: var(--r-full);
+}
+.section-label::before, .section-label::after {
+    display: none;
+}
+.section-label .num {
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: .64rem;
+    color: var(--text-muted);
+    margin-right: 8px;
+    padding-right: 8px;
+    border-right: 1px solid var(--border);
+    font-weight: 700;
+}
+
+/* Cards — give them subtle gradient surfaces (depth) */
+.skill-row,
+.exp-card,
+.edu-card,
+.cert-card,
+.contact-card,
+.tool-card,
+.stat-box,
+.project-card {
+    background-image: linear-gradient(180deg, #ffffff 0%, #f8faff 100%);
+}
+.section-alt .skill-row,
+.section-alt .exp-card,
+.section-alt .edu-card,
+.section-alt .cert-card,
+.section-alt .contact-card,
+.section-alt .tool-card,
+.section-alt .stat-box {
+    background-image: linear-gradient(180deg, #ffffff 0%, #f6f8ff 100%);
+}
+
+/* Card hover — soft indigo glow */
+.skill-row:hover,
+.exp-card:hover,
+.edu-card:hover,
+.cert-card:hover,
+.contact-card:hover,
+.project-card:hover,
+.tool-card:hover,
+.stat-box:hover {
+    box-shadow:
+        0 0 0 1px rgba(79, 70, 229, .25),
+        0 20px 40px rgba(79, 70, 229, .14);
+}
+
+/* Project card — emphasize with a top thin colored border */
+.project-card {
+    border-top: 2px solid transparent;
+}
+.project-card:hover {
+    border-top-color: var(--indigo);
+}
+
+/* Section deco SVGs — boost opacity in light */
+.section-deco { opacity: .35 !important; }
+[data-theme="dark"] .section-deco { opacity: .28 !important; }
+
+/* DECOR background images — boost opacity by darker stroke color */
+#experience::before {
+    background:
+        linear-gradient(90deg, transparent, var(--indigo), var(--emerald), transparent) top center / 60% 3px no-repeat,
+        radial-gradient(circle 480px at 0% 25%, rgba(79, 70, 229, .22), transparent 65%),
+        radial-gradient(circle 400px at 100% 75%, rgba(16, 185, 129, .18), transparent 60%),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='200' viewBox='0 0 280 200'><g fill='none' stroke='%234f46e5' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' opacity='0.5'><polyline points='10,170 40,150 70,160 100,115 130,125 160,80 190,90 220,45 260,55'/><circle cx='100' cy='115' r='4' fill='%234f46e5'/><circle cx='160' cy='80' r='4' fill='%234f46e5'/><circle cx='220' cy='45' r='4' fill='%234f46e5'/><circle cx='260' cy='55' r='4' fill='%234f46e5'/></g></svg>") no-repeat right 60px top 80px / 280px;
+}
+#projects::before {
+    background:
+        linear-gradient(90deg, transparent, var(--indigo), var(--emerald), transparent) top center / 60% 3px no-repeat,
+        radial-gradient(ellipse 90% 50% at 50% -5%, rgba(79, 70, 229, .18), transparent 60%),
+        radial-gradient(ellipse 70% 50% at 50% 105%, rgba(16, 185, 129, .15), transparent 60%),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><g fill='%234f46e5' opacity='0.28'><rect x='10' y='120' width='20' height='70' rx='4'/><rect x='38' y='90' width='20' height='100' rx='4'/><rect x='66' y='55' width='20' height='135' rx='4'/><rect x='94' y='95' width='20' height='95' rx='4'/><rect x='122' y='35' width='20' height='155' rx='4'/><rect x='150' y='75' width='20' height='115' rx='4'/></g></svg>") no-repeat left 40px top 100px / 200px;
+}
+#education::before {
+    background:
+        linear-gradient(90deg, transparent, var(--emerald), var(--indigo), transparent) top center / 60% 3px no-repeat,
+        radial-gradient(circle 400px at 90% 15%, rgba(79, 70, 229, .2), transparent 65%),
+        radial-gradient(circle 360px at 5% 95%, rgba(16, 185, 129, .18), transparent 60%),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'><g fill='none' stroke='%2310b981' stroke-width='1.6' opacity='0.5'><circle cx='120' cy='120' r='110' stroke-dasharray='4 6'/><circle cx='120' cy='120' r='80' stroke-dasharray='2 5'/><circle cx='120' cy='120' r='50'/><circle cx='120' cy='120' r='20' fill='%2310b981' opacity='0.45'/></g></svg>") no-repeat right -60px top 60px / 240px;
+}
+#certificates::before {
+    background:
+        linear-gradient(90deg, transparent, var(--indigo), var(--emerald), transparent) top center / 60% 3px no-repeat,
+        radial-gradient(circle 380px at 15% 25%, rgba(79, 70, 229, .2), transparent 60%),
+        radial-gradient(circle 340px at 88% 75%, rgba(16, 185, 129, .17), transparent 60%),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='180' viewBox='0 0 260 180'><g fill='none' stroke='%234f46e5' stroke-width='1.8' opacity='0.45'><path d='M10,150 Q60,40 110,100 T250,30' stroke-linecap='round'/><path d='M10,160 Q80,110 130,130 T250,80' stroke-linecap='round' stroke-dasharray='3 6'/></g></svg>") no-repeat right 40px top 70px / 280px;
+}
+#contact::before {
+    background:
+        linear-gradient(90deg, transparent, var(--emerald), var(--indigo), transparent) top center / 60% 3px no-repeat,
+        radial-gradient(ellipse 85% 60% at 50% -10%, rgba(79, 70, 229, .22), transparent 60%),
+        radial-gradient(circle 340px at 50% 105%, rgba(16, 185, 129, .18), transparent 65%),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='160' viewBox='0 0 320 160'><g fill='none' stroke='%2310b981' stroke-width='1.8' opacity='0.45'><polyline points='10,130 50,110 90,120 130,75 170,85 210,50 250,60 310,25' stroke-linecap='round' stroke-linejoin='round'/><circle cx='130' cy='75' r='4' fill='%2310b981'/><circle cx='210' cy='50' r='4' fill='%2310b981'/><circle cx='310' cy='25' r='4' fill='%2310b981'/></g></svg>") no-repeat right 40px top 30px / 320px;
+}
+#about::before {
+    background:
+        linear-gradient(90deg, transparent, var(--indigo), var(--emerald), transparent) top center / 60% 3px no-repeat,
+        radial-gradient(circle 440px at 95% 40%, rgba(79, 70, 229, .2), transparent 65%),
+        radial-gradient(circle 380px at 5% 0%, rgba(16, 185, 129, .15), transparent 60%);
+}
+
+/* DARK MODE — keep proper contrast */
+[data-theme="dark"] .section:not(.section-alt) {
+    background: linear-gradient(180deg, #0b1220 0%, #0c1424 50%, #0b1220 100%);
+}
+[data-theme="dark"] .section-alt {
+    background: linear-gradient(180deg, #101a30 0%, #111a2e 50%, #0e1729 100%);
+}
+[data-theme="dark"] .skill-row,
+[data-theme="dark"] .exp-card,
+[data-theme="dark"] .edu-card,
+[data-theme="dark"] .cert-card,
+[data-theme="dark"] .contact-card,
+[data-theme="dark"] .tool-card,
+[data-theme="dark"] .stat-box,
+[data-theme="dark"] .project-card {
+    background-image: linear-gradient(180deg, #1e293b 0%, #1a2236 100%);
+}
+[data-theme="dark"] .section-alt .skill-row,
+[data-theme="dark"] .section-alt .exp-card,
+[data-theme="dark"] .section-alt .edu-card,
+[data-theme="dark"] .section-alt .cert-card,
+[data-theme="dark"] .section-alt .contact-card,
+[data-theme="dark"] .section-alt .tool-card,
+[data-theme="dark"] .section-alt .stat-box {
+    background-image: linear-gradient(180deg, #18213a 0%, #151c2f 100%);
+}
+[data-theme="dark"] .section-label {
+    background: var(--white);
+    border-color: #334155;
+}
+[data-theme="dark"] .section-label .num {
+    border-right-color: #334155;
+}
+[data-theme="dark"] .skill-row:hover,
+[data-theme="dark"] .exp-card:hover,
+[data-theme="dark"] .edu-card:hover,
+[data-theme="dark"] .cert-card:hover,
+[data-theme="dark"] .contact-card:hover,
+[data-theme="dark"] .project-card:hover,
+[data-theme="dark"] .tool-card:hover,
+[data-theme="dark"] .stat-box:hover {
+    box-shadow:
+        0 0 0 1px rgba(129, 140, 248, .35),
+        0 20px 40px rgba(0, 0, 0, .5);
+}
+[data-theme="dark"] .project-card:hover { border-top-color: var(--indigo); }

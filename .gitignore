@@ -1,0 +1,8 @@
+# Internal / private — not for the public site repo
+Anushka_Bhattarai_Resume_Niural.pdf
+WEBSITE-COPY.md
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.log

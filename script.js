@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Typewriter ---
     const tw = document.getElementById('typewriter');
     if (tw) {
-        const phrases = ['clear insights.', 'smarter decisions.', 'strategic value.', 'compelling stories.'];
+        const phrases = ['clear decisions.', 'live dashboards.', 'automated reports.', 'real growth.'];
         let pi = 0, ci = 0, deleting = false;
         function type() {
             const phrase = phrases[pi];
