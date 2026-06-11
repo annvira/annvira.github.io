@@ -216,7 +216,7 @@
         var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (reduce) { show(3); return; }
         show(0);
-        setInterval(function () { show((cur + 1) % phases.length); }, 3200);
+        setInterval(function () { show((cur + 1) % phases.length); }, 1900);
     })();
 
     var counters = document.querySelectorAll('[data-count]');
