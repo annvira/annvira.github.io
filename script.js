@@ -151,74 +151,40 @@
         });
     }
 
-    // Lifecycle 3D scene — JS timeline engine
+    // Data lifecycle loop — JS-driven data packets flowing around the pipeline
     (function () {
-        var lc = document.getElementById('lifecycle');
-        if (!lc) return;
-        var phases = lc.querySelectorAll('.lc-phase');
-        var numEl = document.getElementById('lc-num');
-        var labelEl = document.getElementById('lc-label');
-        var dotsWrap = document.getElementById('lc-dots');
-        var meta = [
-            ['01', 'Raw, scattered data'],
-            ['02', 'Cleaning & analysis'],
-            ['03', 'Building the dashboard'],
-            ['04', 'Visuals & insights'],
-            ['05', 'Presenting to the client'],
-            ['06', 'Client approved']
-        ];
+        var loop = document.getElementById('flowLoop');
+        var packets = document.querySelectorAll('.flow-packet');
+        if (!loop || !loop.getTotalLength || !packets.length) return;
+        var n = packets.length;
+        var progress = 0; // 0..1 around the loop
+        function place() {
+            var len = loop.getTotalLength();
+            if (!len) return;
+            for (var k = 0; k < n; k++) {
+                var frac = ((k / n) + progress) % 1;
+                var pt = loop.getPointAtLength(frac * len);
+                packets[k].setAttribute('cx', pt.x.toFixed(1));
+                packets[k].setAttribute('cy', pt.y.toFixed(1));
+            }
+        }
+        var tries = 0;
+        (function init() {                     // retry until SVG geometry is ready (handles deferred layout)
+            if (loop.getTotalLength()) place();
+            else if (tries++ < 40) setTimeout(init, 80);
+        })();
+        window.addEventListener('load', place);
         var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var rnd = function (n) { return Math.floor(Math.random() * n); };
-
-        // raw-data cells scattered in 3D
-        var raw = document.getElementById('lc-raw');
-        if (raw) {
-            var samples = ['8.2', '1,204', 'A12', '0.4', '$99', 'NULL', '3,914', 'TX', '7.1', '24%', 'ID9', '—'];
-            for (var i = 0; i < 32; i++) {
-                var s = document.createElement('span');
-                s.textContent = samples[i % samples.length];
-                if (i % 7 === 3) s.className = 'err';
-                var z = rnd(120) - 60;
-                s.style.left = rnd(78) + '%';
-                s.style.top = rnd(80) + '%';
-                s.style.setProperty('--z', z + 'px');
-                s.style.transform = 'translate3d(0,0,' + z + 'px)';
-                s.style.animationDelay = (Math.random() * 2).toFixed(2) + 's';
-                raw.appendChild(s);
-            }
+        if (reduce) return;
+        var last = null;
+        function frame(ts) {
+            if (last === null) last = ts;
+            progress = (progress + (ts - last) / 7000) % 1; // ~7s per full loop
+            last = ts;
+            place();
+            requestAnimationFrame(frame);
         }
-
-        // confetti for the approval phase
-        var conf = document.getElementById('lc-confetti');
-        if (conf) {
-            var cols = ['#818cf8', '#34d399', '#f59e0b', '#f472b6', '#ffffff'];
-            for (var j = 0; j < 18; j++) {
-                var p = document.createElement('i');
-                p.style.left = rnd(100) + '%';
-                p.style.background = cols[j % cols.length];
-                p.style.animationDelay = (Math.random() * 1.6).toFixed(2) + 's';
-                conf.appendChild(p);
-            }
-        }
-
-        // progress dots
-        var dots = [];
-        if (dotsWrap) {
-            for (var d = 0; d < meta.length; d++) { var dot = document.createElement('i'); dotsWrap.appendChild(dot); dots.push(dot); }
-        }
-
-        var cur = -1;
-        function show(i) {
-            cur = i;
-            for (var k = 0; k < phases.length; k++) phases[k].classList.toggle('is-active', k === i);
-            if (numEl) numEl.textContent = meta[i][0];
-            if (labelEl) labelEl.textContent = meta[i][1];
-            for (var m = 0; m < dots.length; m++) dots[m].classList.toggle('on', m === i);
-        }
-
-        if (reduce) { show(3); return; }   // static visuals frame, no auto-motion
-        show(0);
-        setInterval(function () { show((cur + 1) % phases.length); }, 3200);
+        requestAnimationFrame(frame);
     })();
 
     var counters = document.querySelectorAll('[data-count]');
