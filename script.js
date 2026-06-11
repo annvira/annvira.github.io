@@ -18,7 +18,7 @@
             }
         }
         if (reduce || !intro) { finish(); }
-        else { setTimeout(finish, 1900); }
+        else { setTimeout(finish, 2700); }
     })();
 
     // Year

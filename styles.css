@@ -531,34 +531,55 @@ ul { list-style: none; }
 html:not(.js) .intro { display: none; }
 
 .intro {
-    position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center;
-    background: radial-gradient(120% 120% at 50% 0%, #16204a 0%, #0b1224 48%, #06090f 100%);
-    transition: transform 1s cubic-bezier(.76, 0, .24, 1), opacity .5s ease .5s;
+    position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; overflow: hidden;
+    background: radial-gradient(120% 120% at 50% 50%, #16204a 0%, #0b1224 45%, #06090f 100%);
+    transition: opacity .6s var(--ease), transform .8s var(--ease);
 }
-.intro--done { transform: translateY(-101%); opacity: 0; pointer-events: none; }
-.intro-inner { text-align: center; }
-.intro-brand { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 36px; opacity: 0; animation: introUp .6s ease .1s forwards; }
-.intro-brand .brand-mark { width: 42px; height: 42px; border-radius: 11px; background: linear-gradient(135deg, var(--indigo), var(--indigo-l)); display: grid; place-items: center; box-shadow: var(--shadow-glow); }
-.intro-brand .brand-mark svg { width: 23px; height: 23px; }
-.intro-brand b { font-family: var(--display); font-weight: 700; font-size: 1.7rem; color: #fff; letter-spacing: -.02em; }
-.intro-stage { perspective: 760px; }
-.intro-chart { display: inline-flex; align-items: flex-end; gap: 11px; height: 132px; padding: 0 6px; transform: rotateX(26deg) rotateY(-14deg); transform-style: preserve-3d; }
-.intro-chart i {
-    display: block; width: 22px; height: 0; border-radius: 5px 5px 0 0;
-    background: linear-gradient(180deg, #818cf8, #34d399);
-    box-shadow: 0 12px 24px rgba(79, 70, 229, .45);
-    animation: introBar .8s cubic-bezier(.2, .85, .25, 1) forwards;
+.intro--done { opacity: 0; transform: scale(1.06); pointer-events: none; }
+
+/* the wordmark: big "A" lands first, then "nvira" forms the word */
+.intro-word {
+    position: relative; z-index: 2;
+    font-family: var(--display); font-weight: 700; letter-spacing: -.02em; line-height: 1;
+    font-size: clamp(2.8rem, 10vw, 5.2rem); color: #fff;
+    display: inline-flex; align-items: baseline; transform-origin: 50% 50%;
+    animation: introHole 1.05s cubic-bezier(.6, .04, .9, .2) 1.6s forwards;
 }
-.intro-chart i:nth-child(1) { animation-delay: .20s; }
-.intro-chart i:nth-child(2) { animation-delay: .30s; }
-.intro-chart i:nth-child(3) { animation-delay: .40s; }
-.intro-chart i:nth-child(4) { animation-delay: .50s; }
-.intro-chart i:nth-child(5) { animation-delay: .60s; }
-.intro-chart i:nth-child(6) { animation-delay: .70s; }
-.intro-chart i:nth-child(7) { animation-delay: .80s; }
-@keyframes introBar { to { height: var(--h); } }
-.intro-label { margin-top: 32px; font-size: .78rem; letter-spacing: .22em; text-transform: uppercase; color: #9aa6c6; opacity: 0; animation: introUp .6s ease 1.05s forwards; }
-@keyframes introUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.intro-A {
+    display: inline-block; opacity: 0; transform: scale(2.6);
+    background: linear-gradient(135deg, #818cf8, #34d399);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: introA .7s var(--spring) .2s forwards;
+}
+.intro-rest {
+    display: inline-block; max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap;
+    animation: introRest .65s var(--ease) .95s forwards;
+}
+@keyframes introA { 0% { opacity: 0; transform: scale(2.8); filter: blur(5px); } 60% { opacity: 1; filter: blur(0); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes introRest { from { max-width: 0; opacity: 0; transform: translateX(-8px); } to { max-width: 6ch; opacity: 1; transform: none; } }
+@keyframes introHole {
+    0%   { transform: rotate(0) scale(1); filter: blur(0); opacity: 1; }
+    35%  { transform: rotate(80deg) scale(1.08); opacity: 1; }
+    100% { transform: rotate(560deg) scale(.02); filter: blur(4px); opacity: 0; }
+}
+
+/* swirling event-horizon ring that opens as the word is pulled in */
+.intro-vortex {
+    position: absolute; left: 50%; top: 50%; width: 14px; height: 14px; border-radius: 50%; z-index: 1;
+    transform: translate(-50%, -50%) scale(0); opacity: 0;
+    background: conic-gradient(from 0deg, rgba(129, 140, 248, 0), rgba(129, 140, 248, .6), rgba(52, 211, 153, .6), rgba(129, 140, 248, 0));
+    box-shadow: 0 0 50px rgba(129, 140, 248, .5);
+    animation: introVortex 1.15s ease-in 1.55s forwards;
+}
+.intro-vortex::after {
+    content: ''; position: absolute; inset: 24%; border-radius: 50%;
+    background: radial-gradient(circle, #06090f 42%, rgba(6, 9, 15, 0) 74%);
+}
+@keyframes introVortex {
+    0%   { opacity: 0; transform: translate(-50%, -50%) scale(0) rotate(0); }
+    30%  { opacity: 1; }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(34) rotate(540deg); }
+}
 
 /* Hero choreographed entrance after the intro lifts away (transition-based) */
 .hero-text > * { transition: opacity .7s var(--ease), transform .7s var(--ease); }
