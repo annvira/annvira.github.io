@@ -21,6 +21,18 @@
         else { setTimeout(finish, 2700); }
     })();
 
+    // Theme toggle (dark / light) — persists the choice
+    (function () {
+        var btn = document.getElementById('themeToggle');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            if (isDark) { document.documentElement.removeAttribute('data-theme'); }
+            else { document.documentElement.setAttribute('data-theme', 'dark'); }
+            try { localStorage.setItem('anvira-theme', isDark ? 'light' : 'dark'); } catch (e) {}
+        });
+    })();
+
     // Year
     var y = document.getElementById('year');
     if (y) y.textContent = new Date().getFullYear();

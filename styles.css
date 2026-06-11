@@ -432,6 +432,7 @@ ul { list-style: none; }
     .ps { grid-template-columns: 1fr; }
     .head { margin-bottom: 44px; }
 }
+@media (max-width: 480px) { .nav-cta { display: none; } }
 @media (max-width: 540px) {
     .wrap { padding: 0 20px; }
     .pillars, .services, .why, .proc, .tms { grid-template-columns: 1fr; }
@@ -882,3 +883,57 @@ body.loaded .hero-text > *:nth-child(5) { transition-delay: .41s; }
 .story-caption > span:last-child { font-size: .92rem; font-weight: 600; color: #d4dcf3; }
 
 @media (max-width: 540px) { .story-stage { height: 250px; } .story-lbl { display: none; } }
+
+/* ============================================================
+   THEME TOGGLE BUTTON
+   ============================================================ */
+.theme-toggle {
+    width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center;
+    color: var(--text-2); background: transparent; border: 1.5px solid var(--border-2);
+    transition: color .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease);
+}
+.theme-toggle:hover { color: var(--indigo); border-color: var(--indigo); background: var(--indigo-soft); }
+.theme-toggle svg { width: 18px; height: 18px; }
+.theme-toggle .ic-sun { display: none; }
+[data-theme="dark"] .theme-toggle .ic-sun { display: block; }
+[data-theme="dark"] .theme-toggle .ic-moon { display: none; }
+
+/* smooth crossfade when switching themes */
+body, .nav, .nav-menu, .section, .section-alt,
+.pillar, .svc, .why-card, .aud, .ps-card.bad, .value-pillar, .proc-step,
+.form, .field input, .field select, .field textarea, .story-dot, .story-stage, .btn-ghost {
+    transition: background-color .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease);
+}
+
+/* ============================================================
+   DARK THEME (default) — cohesive dark surfaces everywhere
+   ============================================================ */
+[data-theme="dark"] {
+    --text: #e9edf8;
+    --text-2: #aeb8d0;
+    --text-3: #7c88a6;
+    --bg: #0a1120;
+    --bg-alt: #0e1730;
+    --border: #1f2b46;
+    --border-2: #2a3a5c;
+    --white: #131c33;
+    --indigo: #818cf8;
+    --indigo-d: #6366f1;
+    --indigo-l: #a5b4fc;
+    --indigo-soft: rgba(129, 140, 248, .14);
+    --indigo-ring: rgba(129, 140, 248, .28);
+    --emerald: #34d399;
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, .4);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, .45);
+    --shadow-md: 0 8px 22px rgba(0, 0, 0, .5);
+    --shadow-lg: 0 24px 60px rgba(0, 0, 0, .6);
+    --shadow-glow: 0 10px 30px rgba(129, 140, 248, .4);
+    color-scheme: dark;
+}
+[data-theme="dark"] .nav { background: rgba(10, 16, 30, .72); }
+[data-theme="dark"] .nav.scrolled { background: rgba(10, 16, 30, .92); border-bottom-color: var(--border); box-shadow: 0 1px 0 rgba(0, 0, 0, .35); }
+[data-theme="dark"] .nav-menu.open { background: rgba(12, 18, 34, .97); border-bottom-color: var(--border); }
+[data-theme="dark"] .nav-toggle span { background: var(--text); }
+[data-theme="dark"] .field input, [data-theme="dark"] .field select, [data-theme="dark"] .field textarea { background: var(--bg-alt); }
+[data-theme="dark"] .btn-ghost { background: var(--white); color: var(--text); border-color: var(--border-2); }
+[data-theme="dark"] .svc-extra-tags span { background: var(--bg-alt); color: var(--text); }
