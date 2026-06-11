@@ -937,3 +937,48 @@ body, .nav, .nav-menu, .section, .section-alt,
 [data-theme="dark"] .field input, [data-theme="dark"] .field select, [data-theme="dark"] .field textarea { background: var(--bg-alt); }
 [data-theme="dark"] .btn-ghost { background: var(--white); color: var(--text); border-color: var(--border-2); }
 [data-theme="dark"] .svc-extra-tags span { background: var(--bg-alt); color: var(--text); }
+
+/* ============================================================
+   LIGHT THEME — restyle the (default-dark) hero + scene so the
+   toggle visibly flips the WHOLE page, not just the body below
+   ============================================================ */
+html:not([data-theme="dark"]) .hero {
+    background: radial-gradient(120% 120% at 80% 0%, #eaeefb 0%, #f5f7ff 45%, #e7ecfb 100%);
+    color: #334155;
+}
+html:not([data-theme="dark"]) .hero::before {
+    background-image: linear-gradient(rgba(15, 23, 42, .05) 1px, transparent 1px), linear-gradient(90deg, rgba(15, 23, 42, .05) 1px, transparent 1px);
+}
+html:not([data-theme="dark"]) .hero-glow.g1 { opacity: .22; }
+html:not([data-theme="dark"]) .hero-glow.g2 { opacity: .16; }
+html:not([data-theme="dark"]) .hero h1 { color: #0f172a; }
+html:not([data-theme="dark"]) .hero-sub { color: #475569; }
+html:not([data-theme="dark"]) .hero-badge { background: rgba(79, 70, 229, .08); border-color: rgba(79, 70, 229, .2); color: #4338ca; }
+html:not([data-theme="dark"]) .hero-trust { color: #64748b; }
+html:not([data-theme="dark"]) .hero-trust strong { color: #0f172a; }
+html:not([data-theme="dark"]) .hero-trust .sep { background: rgba(15, 23, 42, .14); }
+html:not([data-theme="dark"]) .btn-light { background: rgba(15, 23, 42, .05); color: #0f172a; border-color: rgba(15, 23, 42, .12); }
+html:not([data-theme="dark"]) .btn-light:hover { background: rgba(15, 23, 42, .09); }
+
+/* story rail + caption */
+html:not([data-theme="dark"]) .story-line { background: rgba(15, 23, 42, .1); }
+html:not([data-theme="dark"]) .story-dot { background: #fff; color: #64748b; border-color: rgba(15, 23, 42, .14); }
+html:not([data-theme="dark"]) .story-lbl { color: #64748b; }
+html:not([data-theme="dark"]) .story-caption > span:last-child { color: #334155; }
+
+/* animated stage on light */
+html:not([data-theme="dark"]) .story-stage {
+    background: linear-gradient(160deg, #ffffff, #eceffb);
+    border-color: #e2e6f3; box-shadow: 0 30px 60px rgba(15, 23, 42, .14);
+}
+html:not([data-theme="dark"]) .story-stage::before {
+    background-image: linear-gradient(rgba(15, 23, 42, .035) 1px, transparent 1px), linear-gradient(90deg, rgba(15, 23, 42, .035) 1px, transparent 1px);
+}
+html:not([data-theme="dark"]) .lc-card { background: linear-gradient(160deg, rgba(15, 23, 42, .05), rgba(15, 23, 42, .015)); border-color: rgba(15, 23, 42, .1); box-shadow: 0 20px 40px rgba(15, 23, 42, .14); }
+html:not([data-theme="dark"]) .lc-rawgrid span { background: rgba(15, 23, 42, .05); border-color: rgba(15, 23, 42, .1); color: #64748b; }
+html:not([data-theme="dark"]) .lc-rawgrid span.err { background: rgba(239, 68, 68, .12); border-color: rgba(239, 68, 68, .3); color: #dc2626; }
+html:not([data-theme="dark"]) .lc-kpis span { background: rgba(15, 23, 42, .04); border-color: rgba(15, 23, 42, .08); color: #64748b; }
+html:not([data-theme="dark"]) .lc-kpis b { color: #0f172a; }
+html:not([data-theme="dark"]) .lc-sk { background: rgba(15, 23, 42, .05); border-color: rgba(15, 23, 42, .16); }
+html:not([data-theme="dark"]) .lc-laptop-screen { background: linear-gradient(160deg, #e7ebf7, #d7ddef); border-color: rgba(15, 23, 42, .12); }
+html:not([data-theme="dark"]) .lc-laptop-base { background: linear-gradient(180deg, #c3cbe0, #aeb7d2); }
