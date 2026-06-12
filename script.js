@@ -62,6 +62,26 @@
         });
     }
 
+    // Nav scroll-spy — highlight the section currently in view
+    (function () {
+        var links = Array.prototype.slice.call(document.querySelectorAll('.nav-menu a[href^="#"]'));
+        var map = {};
+        links.forEach(function (a) {
+            var sec = document.getElementById(a.getAttribute('href').slice(1));
+            if (sec) map[sec.id] = a;
+        });
+        var ids = Object.keys(map);
+        if (!ids.length || !('IntersectionObserver' in window)) return;
+        var spy = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (!e.isIntersecting) return;
+                links.forEach(function (l) { l.classList.remove('active'); });
+                map[e.target.id].classList.add('active');
+            });
+        }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+        ids.forEach(function (id) { spy.observe(document.getElementById(id)); });
+    })();
+
     // Smooth scroll for in-page anchors
     document.querySelectorAll('a[href^="#"]').forEach(function (a) {
         a.addEventListener('click', function (e) {

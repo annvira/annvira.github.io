@@ -1062,3 +1062,44 @@ html:not([data-theme="dark"]) .lc-laptop-base { background: linear-gradient(180d
 .mock-upload .mk-file, .mk-row { transition: background-color .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease); }
 @media (max-width: 980px) { .dash-show { grid-template-columns: 1fr; gap: 36px; } .steps-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 540px) { .dboard-charts { grid-template-columns: 1fr; } .steps-grid { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   FLOW FIGURE — tools -> Anvira -> decisions
+   ============================================================ */
+.flowfig {
+    position: relative; display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;
+    padding: 54px 24px; border-radius: var(--r-xl); border: 1px solid var(--border);
+    background: var(--white); box-shadow: var(--shadow-xs); overflow: hidden;
+}
+.flowfig::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .6;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 32px 32px;
+    -webkit-mask: radial-gradient(ellipse 62% 75% at center, #000, transparent 78%);
+    mask: radial-gradient(ellipse 62% 75% at center, #000, transparent 78%);
+}
+.flowfig-node {
+    position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 10px;
+    background: var(--white); border: 1px solid var(--border); border-radius: var(--r-md);
+    padding: 18px 22px; box-shadow: var(--shadow-sm); min-width: 130px;
+}
+.flowfig-node svg { width: 24px; height: 24px; color: var(--text-2); }
+.flowfig-node span { font-size: .84rem; font-weight: 600; color: var(--text); white-space: nowrap; }
+.flowfig-line { position: relative; z-index: 1; color: var(--indigo); display: flex; align-items: center; }
+.flowfig-line svg { width: 44px; height: 16px; }
+.flowfig-core {
+    position: relative; z-index: 1; width: 76px; height: 76px; border-radius: 20px; display: grid; place-items: center;
+    background: linear-gradient(135deg, var(--indigo), var(--indigo-l)); box-shadow: var(--shadow-glow);
+}
+.flowfig-core svg { width: 38px; height: 38px; }
+@media (max-width: 600px) { .flowfig { flex-direction: column; } .flowfig-line svg { transform: rotate(90deg); } }
+
+/* ============================================================
+   ACTIVE NAV STATE — shows the current section
+   ============================================================ */
+.nav-menu a { position: relative; }
+.nav-menu a.active { color: var(--text); }
+.nav-menu a.active::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: -7px; height: 2px; border-radius: 2px;
+    background: var(--indigo);
+}
