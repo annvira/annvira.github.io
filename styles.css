@@ -34,7 +34,8 @@
     --shadow-glow: 0 10px 30px rgba(47, 96, 73, .3);
 
     --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --display: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --display: 'Inter Tight', 'Inter', -apple-system, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
     --r-sm: 10px;
     --r-md: 14px;
@@ -89,7 +90,8 @@ ul { list-style: none; }
 /* ---------- Eyebrow / section heads ---------- */
 .eyebrow {
     display: inline-flex; align-items: center; gap: 9px;
-    font-size: .76rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    font-family: var(--mono);
+    font-size: .74rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
     color: var(--indigo);
 }
 .eyebrow::before { content: ''; width: 26px; height: 1.5px; background: linear-gradient(90deg, transparent, var(--indigo)); }
