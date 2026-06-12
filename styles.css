@@ -149,7 +149,7 @@ ul { list-style: none; }
    ============================================================ */
 .hero {
     position: relative; padding: calc(var(--nav-h) + 70px) 0 90px;
-    background: radial-gradient(120% 120% at 80% 0%, #2c2417 0%, #1d180f 45%, #100c07 100%);
+    background: radial-gradient(130% 120% at 82% -10%, #2b2519 0%, #16130c 44%, #0b0905 100%);
     color: #e8e2d6; overflow: hidden;
 }
 .hero::before {
@@ -219,12 +219,12 @@ ul { list-style: none; }
 /* ============================================================
    LOGO / TOOLS STRIP
    ============================================================ */
-.strip { background: var(--ink); padding: 30px 0; }
+.strip { background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 30px 0; transition: background-color .35s var(--ease), border-color .35s var(--ease); }
 .strip-inner { display: flex; align-items: center; justify-content: center; gap: 14px 40px; flex-wrap: wrap; }
-.strip-label { font-size: .78rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #6b7693; }
+.strip-label { font-family: var(--mono); font-size: .74rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); }
 .strip-tools { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; }
-.strip-tools span { font-family: var(--display); font-weight: 600; font-size: 1rem; color: #aeb8d4; opacity: .85; transition: opacity .2s, color .2s; }
-.strip-tools span:hover { opacity: 1; color: #fff; }
+.strip-tools span { font-family: var(--display); font-weight: 600; font-size: 1rem; color: var(--text-2); opacity: .9; transition: opacity .2s, color .2s; }
+.strip-tools span:hover { opacity: 1; color: var(--text); }
 
 /* ============================================================
    STATS
