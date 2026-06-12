@@ -540,6 +540,21 @@ html:not(.js) .intro { display: none; }
 }
 .intro--done { opacity: 0; transform: scale(1.06); pointer-events: none; }
 
+/* animated colored tiles behind the intro word (center kept clear) */
+.intro-tiles {
+    position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0;
+    -webkit-mask: radial-gradient(ellipse 52% 56% at center, transparent 26%, #000 72%);
+    mask: radial-gradient(ellipse 52% 56% at center, transparent 26%, #000 72%);
+}
+.intro-tiles .it {
+    position: absolute; border-radius: 14px; opacity: .55; will-change: transform;
+    animation: itDrift 15s ease-in-out infinite;
+}
+@keyframes itDrift {
+    0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+    50%      { transform: translate(var(--mx, 22px), var(--my, -22px)) rotate(7deg) scale(1.06); }
+}
+
 /* the wordmark: big "A" lands first, then "nvira" forms the word */
 .intro-word {
     position: relative; z-index: 2;
