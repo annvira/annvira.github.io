@@ -1103,3 +1103,17 @@ html:not([data-theme="dark"]) .lc-laptop-base { background: linear-gradient(180d
     content: ''; position: absolute; left: 0; right: 0; bottom: -7px; height: 2px; border-radius: 2px;
     background: var(--indigo);
 }
+
+/* ============================================================
+   HERO MOSAIC — decorative warm-tone tile collage (corner accent)
+   ============================================================ */
+.hero-inner { position: relative; z-index: 1; }
+.hero-mosaic {
+    position: absolute; top: 86px; right: 0; width: min(46%, 430px); height: 224px; z-index: 0;
+    display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 50px; gap: 9px;
+    opacity: .52; pointer-events: none;
+    -webkit-mask: radial-gradient(135% 135% at 100% 0%, #000 20%, transparent 72%);
+    mask: radial-gradient(135% 135% at 100% 0%, #000 20%, transparent 72%);
+}
+.hero-mosaic .t { background: var(--c); border-radius: 10px; }
+@media (max-width: 980px) { .hero-mosaic { display: none; } }
