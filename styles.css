@@ -1119,3 +1119,15 @@ html:not([data-theme="dark"]) .lc-laptop-base { background: linear-gradient(180d
 }
 .hero-mosaic .t { background: var(--c); border-radius: 10px; }
 @media (max-width: 980px) { .hero-mosaic { display: none; } }
+
+/* ============================================================
+   SUB-PAGES — page hero + big page title
+   ============================================================ */
+.page-hero { padding-top: calc(var(--nav-h) + 78px); padding-bottom: 64px; }
+.page-head { max-width: 760px; }
+.page-head .eyebrow { margin-bottom: 16px; }
+.h1big {
+    font-family: var(--display); font-weight: 700; letter-spacing: -.03em; line-height: 1.08;
+    font-size: clamp(2.3rem, 5vw, 3.6rem); color: var(--text); margin: 0 0 16px;
+}
+.page-head .btn { margin-top: 28px; }
